@@ -9,10 +9,13 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: "Mirokai Experience",
-  description: "Expérience Mirokai installable (PWA).",
+  title: "Mirokaï Experience",
+  description: "Expérience Mirokaï installable (PWA).",
   manifest: "/manifest.json",
-  themeColor: "#4c1d95",
+  icons: {
+    icon: "/icons/icon-192x192.png",
+    apple: "/icons/apple-touch-icon.png",
+  },
 };
 
 export default function RootLayout({

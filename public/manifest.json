@@ -1,12 +1,12 @@
 {
-  "name": "Mirokai Experience",
-  "short_name": "Mirokai",
-  "description": "Expérience Mirokai installable (PWA).",
+  "name": "Mirokaï Experience",
+  "short_name": "Mirokaï",
+  "description": "Expérience Mirokaï installable (PWA).",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
-  "background_color": "#020617",
-  "theme_color": "#2a2f86",
+  "background_color": "#192c94",
+  "theme_color": "#192c94",
   "icons": [
     {
       "src": "/icons/icon.svg",
@@ -15,8 +15,14 @@
       "purpose": "any"
     },
     {
-      "src": "/icons/mirokai-logo.png",
-      "sizes": "any",
+      "src": "/icons/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icons/apple-touch-icon.png",
+      "sizes": "180x180",
       "type": "image/png",
       "purpose": "any"
     }

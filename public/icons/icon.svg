@@ -1,3 +1,14 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Mirokai Experience">
-  <image href="/icons/mirokai-logo.png" x="0" y="0" width="512" height="512" preserveAspectRatio="xMidYMid meet" />
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="54" height="62" viewBox="0 0 54 62" fill="none"><path d="M41.79 20.04C34.3 20.24 33.59 25.81 26.51 25.71C19.43 25.71 18.62 20.35 11.23 20.04C4.95001 19.84 0 24.9 0 30.97C0 37.04 5.06001 41.9 11.23 41.9C17.81 41.9 18.82 36.03 26.51 35.93C34.3 35.93 35.21 41.9 41.79 41.9C48.37 41.9 53.02 37.04 53.02 30.97C53.02 24.9 47.96 19.84 41.79 20.04Z" fill="url(#paint0_linear_1_3)"></path><path d="M26.51 20.84C32.2648 20.84 36.93 16.1748 36.93 10.42C36.93 4.66519 32.2648 0 26.51 0C20.7552 0 16.09 4.66519 16.09 10.42C16.09 16.1748 20.7552 20.84 26.51 20.84Z" fill="url(#paint1_linear_1_3)"></path><path d="M26.51 61.43C32.2648 61.43 36.93 56.7648 36.93 51.01C36.93 45.2552 32.2648 40.59 26.51 40.59C20.7552 40.59 16.09 45.2552 16.09 51.01C16.09 56.7648 20.7552 61.43 26.51 61.43Z" fill="url(#paint2_linear_1_3)"></path><defs>
+<linearGradient id="paint0_linear_1_3" x1="0" y1="30.9671" x2="53.02" y2="30.9671" gradientUnits="userSpaceOnUse">
+<stop stop-color="#112361"></stop>
+<stop offset="1" stop-color="#5D7AE2"></stop>
+</linearGradient>
+<linearGradient id="paint1_linear_1_3" x1="16.09" y1="10.42" x2="36.93" y2="10.42" gradientUnits="userSpaceOnUse">
+<stop stop-color="#112361"></stop>
+<stop offset="1" stop-color="#5D7AE2"></stop>
+</linearGradient>
+<linearGradient id="paint2_linear_1_3" x1="16.09" y1="51.01" x2="36.93" y2="51.01" gradientUnits="userSpaceOnUse">
+<stop stop-color="#112361"></stop>
+<stop offset="1" stop-color="#5D7AE2"></stop>
+</linearGradient>
+</defs></svg>
