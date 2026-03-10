@@ -13,10 +13,10 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Enchanted Tools",
-  description: "Boîte à outils installable (PWA).",
+  title: "Mirokai Experience",
+  description: "Expérience Mirokai installable (PWA).",
   manifest: "/manifest.json",
-  themeColor: "#10b981",
+  themeColor: "#2a2f86",
 };
 
 export default function RootLayout({
