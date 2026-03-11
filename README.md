@@ -1,36 +1,111 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🤖 L'Expérience Mirokaï — Landing Page PWA
 
-## Getting Started
+Landing page **Progressive Web App** pour l'Expérience Mirokaï d'[Enchanted Tools Paris](https://enchanted-tools.com), construite avec **Next.js 15**, **Tailwind CSS v4** et **TypeScript**.
 
-First, run the development server:
+---
+
+## ✨ Fonctionnalités
+
+### Navigation & Hero
+- Navbar desktop 3 colonnes : liens (Votre visite / Conférences / Shop) · logo centré · Louer le lieu + FR + Billetterie
+- Hero plein écran fond bleu `#192c94` avec titre responsive en 2 lignes
+- Sélecteur de langue (FR)
+
+### Profil visiteur
+- Deux cards glassmorphism côte à côte (Je viens en équipe / Je viens seul)
+- Effet typographique : ligne 1 texte plein blanc, ligne 2 contour blanc (`-webkit-text-stroke`)
+
+### Réservation interactive (3 étapes)
+- **Calendrier** avec créneaux codés par couleur : 🟢 Grand Public · 🔵 Groupe Entreprise · 🟣 Privé (8+ pers.)
+- **Formulaire** adaptatif selon le profil (champs B2B : entreprise, poste, nb personnes, code promo)
+- **Validation email** en temps réel (regex + retour visuel rouge)
+- **Redirection Eventbrite** avec pré-remplissage des champs via paramètres URL
+- **Confirmation personnalisée** avec contacts distincts B2B / Grand Public / Privé
+
+### Témoignages
+- Carrousel auto-play (5s) de cards carrées 160×160px
+- Badge entreprise coloré (initiales), citation complète affichée sous la card sélectionnée
+- 5 témoignages : Renault Group, BNP Paribas, Capgemini, Accor Hotels, SNCF
+
+### Plan & Localisation
+- **Google Maps** embarqué avec point rouge — 18 Rue de la Fontaine au Roi, 75011 Paris
+- Bouton itinéraire flottant (Google Maps directions)
+- **Plan architectural** (PLAN -1) dans un modal avec **zones cliquables** :
+  - 🤖 Mirokaï Experience
+  - 🤝 Zone Partenaire Spoon
+  - 🎛️ Régie
+  - ⚙️ Salle de Cyclage
+- Infos pratiques : Métro Goncourt (L11), Bus, Vélib', Parking
+
+### FAQ
+- Accordéon avec 6 questions techniques (RGPD, intégration, mises à jour…)
+- CTA expert + téléchargement fiche produit
+
+### Footer
+- 3 colonnes : Marque (réseaux sociaux) · Informations légales · Contact
+- Liens : Politique de confidentialité, Mentions légales, CGV, Cookies, RGPD
+
+### PWA
+- `manifest.json` configuré (icônes 192×192, apple-touch-icon, SVG)
+- `favicon.ico` personnalisé
+- Service Worker (`sw.js`)
+- Installable sur mobile et desktop
+
+---
+
+## 🛠 Stack technique
+
+| Outil | Version |
+|---|---|
+| Next.js | 15 (App Router) |
+| React | 19 |
+| Tailwind CSS | v4 |
+| TypeScript | 5 |
+| Font | Space Grotesk (Google Fonts) |
+
+---
+
+## 🚀 Lancer en local
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Ouvrir [http://localhost:3000](http://localhost:3000)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 📁 Structure
 
-## Learn More
+```
+app/
+  page.tsx        # Page principale (tout le contenu)
+  layout.tsx      # Layout global + métadonnées PWA
+  globals.css     # Variables CSS + Tailwind
+public/
+  manifest.json   # Configuration PWA
+  sw.js           # Service Worker
+  plan-mirokai.png # Plan architectural du lieu
+  icons/          # Icônes PWA (192x192, apple-touch-icon, SVG)
+  logo-enchanted-tools.svg
+```
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🌐 Déploiement
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Le projet est déployé sur **Vercel** en continu depuis la branche `main`.
 
-## Deploy on Vercel
+```bash
+npx vercel --prod
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 📍 Adresse
+
+**18 Rue de la Fontaine au Roi, 75011 Paris**
+Métro Goncourt — Ligne 11
+
+[→ Voir sur Eventbrite](https://www.eventbrite.fr/e/lexperience-mirokai-musee-robotique-et-ia-tickets-1837425843159)

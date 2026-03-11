@@ -235,18 +235,22 @@ export default function Home() {
         style={{ background: "linear-gradient(180deg, #2a1a6e 0%, #5b1f7a 100%)" }}
       >
         {/* Titre */}
-        <h2 className="font-black uppercase leading-none text-white"
-            style={{ fontSize: "clamp(1.8rem, 8vw, 2.8rem)", letterSpacing: "-0.01em" }}>
+        <h2
+          className="font-black uppercase leading-none text-white"
+          style={{ fontSize: "clamp(1.8rem, 8vw, 2.8rem)", letterSpacing: "-0.01em" }}
+        >
           COMMENT SOUHAITEZ‑VOUS
         </h2>
-        <h2 className="font-black uppercase leading-none"
-            style={{
-              fontSize: "clamp(1.8rem, 8vw, 2.8rem)",
-              letterSpacing: "-0.01em",
-              background: "linear-gradient(90deg, #a78bfa, #60a5fa)",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-            }}>
+        {/* Ligne 2 : effet contour (stroke) sans remplissage */}
+        <h2
+          className="font-black uppercase leading-none"
+          style={{
+            fontSize: "clamp(1.8rem, 8vw, 2.8rem)",
+            letterSpacing: "-0.01em",
+            WebkitTextFillColor: "transparent",
+            WebkitTextStroke: "1.5px white",
+          }}
+        >
           DÉCOUVRIR MIROKAÏ&nbsp;?
         </h2>
 
@@ -805,96 +809,39 @@ export default function Home() {
           18 Rue de la Fontaine au Roi, 75011 Paris — Métro Goncourt (L11)
         </p>
 
-        {/* Plan interactif avec zones cliquables */}
+        {/* ── Google Maps avec point rouge ── */}
         <div className="relative mt-6 w-full overflow-hidden rounded-3xl border border-white/15 shadow-xl">
-          <Image
-            src="/plan-mirokai.png"
-            alt="Plan du lieu – Mirokaï Experience"
-            width={900}
-            height={540}
-            className="w-full object-cover"
+          <iframe
+            src="https://maps.google.com/maps?q=18+Rue+de+la+Fontaine+au+Roi+75011+Paris+France&z=16&output=embed"
+            width="100%"
+            height="280"
+            loading="lazy"
+            className="block w-full"
+            title="Google Maps – Mirokaï Experience"
           />
-
-          {/* Zones cliquables superposées */}
-          {PLAN_ZONES.map((zone) => (
-            <button
-              key={zone.id}
-              type="button"
-              onClick={() => setSelectedZone(selectedZone?.id === zone.id ? null : zone)}
-              className="absolute rounded-lg transition-all duration-200"
-              style={{
-                top: zone.top, left: zone.left, width: zone.width, height: zone.height,
-                background: selectedZone?.id === zone.id ? zone.color + "35" : "transparent",
-                border: selectedZone?.id === zone.id ? `2px solid ${zone.color}` : "2px solid transparent",
-                cursor: "pointer",
-              }}
-              aria-label={`Zone : ${zone.label}`}
-            >
-              {/* Label flottant visible au hover / sélection */}
-              <span
-                className="absolute bottom-1 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full px-2 py-0.5 text-[9px] font-bold text-white opacity-0 transition group-hover:opacity-100"
-                style={{ background: zone.color, opacity: selectedZone?.id === zone.id ? 1 : undefined }}
-              >
-                {zone.label}
-              </span>
-            </button>
-          ))}
-
-          {/* Bouton plein écran */}
-          <button
-            type="button"
-            onClick={() => setShowMapModal(true)}
-            className="absolute bottom-2 right-2 rounded-full bg-black/60 px-3 py-1.5 text-[10px] font-semibold text-white backdrop-blur-sm transition hover:bg-black/80"
+          {/* Bouton itinéraire flottant */}
+          <a
+            href="https://www.google.com/maps/dir/?api=1&destination=18+Rue+de+la+Fontaine+au+Roi+75011+Paris"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="absolute bottom-3 left-3 flex items-center gap-1.5 rounded-full bg-white px-3 py-1.5 text-[11px] font-bold text-slate-900 shadow-lg transition hover:bg-white/90"
           >
-            ⛶ Plein écran
-          </button>
+            📍 Itinéraire
+          </a>
         </div>
 
-        {/* Légende des zones */}
-        <div className="mt-3 flex flex-wrap gap-2">
-          {PLAN_ZONES.map((zone) => (
-            <button
-              key={zone.id}
-              type="button"
-              onClick={() => setSelectedZone(selectedZone?.id === zone.id ? null : zone)}
-              className="flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-[10px] font-semibold transition"
-              style={{
-                borderColor: selectedZone?.id === zone.id ? zone.color : "rgba(255,255,255,0.15)",
-                background: selectedZone?.id === zone.id ? zone.color + "22" : "rgba(255,255,255,0.05)",
-                color: selectedZone?.id === zone.id ? "white" : "rgba(255,255,255,0.55)",
-              }}
-            >
-              <span>{zone.icon}</span>
-              {zone.label}
-            </button>
-          ))}
-        </div>
-
-        {/* Panneau info zone sélectionnée */}
-        {selectedZone && (
-          <div
-            className="mt-4 rounded-2xl border p-4 transition-all duration-300"
-            style={{ background: selectedZone.color + "18", borderColor: selectedZone.color + "40" }}
-          >
-            <div className="flex items-start justify-between gap-3">
-              <div className="flex items-center gap-2">
-                <span className="text-xl">{selectedZone.icon}</span>
-                <div>
-                  <p className="text-[13px] font-bold text-white">{selectedZone.label}</p>
-                  <p className="text-[11px]" style={{ color: selectedZone.color }}>{selectedZone.capacity}</p>
-                </div>
-              </div>
-              <button
-                type="button"
-                onClick={() => setSelectedZone(null)}
-                className="shrink-0 text-white/40 hover:text-white text-lg leading-none"
-              >×</button>
-            </div>
-            <p className="mt-2.5 text-[12px] leading-relaxed text-white/70">
-              {selectedZone.description}
-            </p>
-          </div>
-        )}
+        {/* Bouton plan du lieu */}
+        <button
+          type="button"
+          onClick={() => setShowMapModal(true)}
+          className="mt-4 flex w-full items-center justify-center gap-2 rounded-2xl border border-white/20 bg-white/8 py-3 text-[13px] font-semibold text-white transition hover:bg-white/15"
+          style={{ background: "rgba(255,255,255,0.07)" }}
+        >
+          <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
+          </svg>
+          Voir le plan du lieu
+        </button>
 
         {/* Infos pratiques */}
         <div className="mt-5 grid grid-cols-2 gap-3 text-[12px]">
@@ -915,45 +862,35 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── Modal plan agrandi ── */}
+      {/* ── Modal plan du lieu ── */}
       {showMapModal && (
         <div
-          className="fixed inset-0 z-[999] flex items-center justify-center bg-black/70 p-4 backdrop-blur-sm"
-          onClick={() => setShowMapModal(false)}
+          className="fixed inset-0 z-[999] flex items-center justify-center bg-black/80 p-4 backdrop-blur-sm"
+          onClick={() => { setShowMapModal(false); setSelectedZone(null); }}
         >
           <div
-            className="relative w-full max-w-2xl rounded-3xl overflow-hidden shadow-2xl"
+            className="relative w-full max-w-2xl rounded-3xl overflow-hidden shadow-2xl max-h-[90vh] flex flex-col"
             onClick={(e) => e.stopPropagation()}
           >
-            {/* En-tête modal */}
-            <div className="flex items-center justify-between bg-[#7c1435] px-5 py-3">
+            {/* En-tête */}
+            <div className="flex shrink-0 items-center justify-between bg-[#7c1435] px-5 py-3">
               <div>
-                <p className="text-sm font-bold text-white">L&apos;Expérience Mirokaï</p>
+                <p className="text-sm font-bold text-white">Plan du lieu</p>
                 <p className="text-[11px] text-white/60">18 Rue de la Fontaine au Roi, 75011 Paris</p>
               </div>
-              <div className="flex items-center gap-2">
-                <a
-                  href="https://www.openstreetmap.org/?mlat=48.8660&mlon=2.3630&zoom=17"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="rounded-full border border-white/25 bg-white/10 px-3 py-1.5 text-[11px] font-semibold text-white hover:bg-white/20"
-                  onClick={(e) => e.stopPropagation()}
-                >
-                  Ouvrir dans Maps ↗
-                </a>
-                <button
-                  type="button"
-                  onClick={() => setShowMapModal(false)}
-                  className="rounded-full border border-white/25 bg-white/10 p-1.5 text-white hover:bg-white/20"
-                >
-                  <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                  </svg>
-                </button>
-              </div>
+              <button
+                type="button"
+                onClick={() => { setShowMapModal(false); setSelectedZone(null); }}
+                className="rounded-full border border-white/25 bg-white/10 p-1.5 text-white hover:bg-white/20"
+              >
+                <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
             </div>
-            {/* Plan haute résolution */}
-            <div className="bg-white/5">
+
+            {/* Plan avec zones cliquables */}
+            <div className="relative overflow-auto bg-gray-900">
               <Image
                 src="/plan-mirokai.png"
                 alt="Plan détaillé – Mirokaï Experience"
@@ -961,14 +898,70 @@ export default function Home() {
                 height={720}
                 className="w-full object-contain"
               />
+              {/* Zones cliquables */}
+              {PLAN_ZONES.map((zone) => (
+                <button
+                  key={zone.id}
+                  type="button"
+                  onClick={() => setSelectedZone(selectedZone?.id === zone.id ? null : zone)}
+                  className="absolute rounded-lg transition-all duration-200 group"
+                  style={{
+                    top: zone.top, left: zone.left, width: zone.width, height: zone.height,
+                    background: selectedZone?.id === zone.id ? zone.color + "30" : "rgba(255,255,255,0)",
+                    border: selectedZone?.id === zone.id ? `2px solid ${zone.color}` : "2px solid transparent",
+                    cursor: "pointer",
+                  }}
+                >
+                  <span
+                    className="absolute bottom-1 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full px-2 py-0.5 text-[9px] font-bold text-white shadow transition-opacity duration-200"
+                    style={{
+                      background: zone.color,
+                      opacity: selectedZone?.id === zone.id ? 1 : 0,
+                    }}
+                  >
+                    {zone.icon} {zone.label}
+                  </span>
+                </button>
+              ))}
             </div>
-            {/* Bouton itinéraire */}
-            <div className="bg-[#7c1435] px-5 py-3 text-center">
+
+            {/* Légende */}
+            <div className="shrink-0 bg-[#7c1435] px-4 pt-3 pb-2 flex flex-wrap gap-2">
+              {PLAN_ZONES.map((zone) => (
+                <button
+                  key={zone.id}
+                  type="button"
+                  onClick={() => setSelectedZone(selectedZone?.id === zone.id ? null : zone)}
+                  className="flex items-center gap-1 rounded-full border px-2.5 py-1 text-[10px] font-semibold transition"
+                  style={{
+                    borderColor: selectedZone?.id === zone.id ? zone.color : "rgba(255,255,255,0.2)",
+                    background: selectedZone?.id === zone.id ? zone.color + "30" : "rgba(255,255,255,0.08)",
+                    color: "white",
+                  }}
+                >
+                  {zone.icon} {zone.label}
+                </button>
+              ))}
+            </div>
+
+            {/* Info zone sélectionnée */}
+            {selectedZone && (
+              <div
+                className="shrink-0 px-4 py-3 text-[12px]"
+                style={{ background: selectedZone.color + "20", borderTop: `1px solid ${selectedZone.color}40` }}
+              >
+                <p className="font-bold text-white">{selectedZone.icon} {selectedZone.label} <span className="font-normal text-white/50">— {selectedZone.capacity}</span></p>
+                <p className="mt-1 text-white/70 leading-relaxed">{selectedZone.description}</p>
+              </div>
+            )}
+
+            {/* Pied : itinéraire */}
+            <div className="shrink-0 bg-[#5c0f25] px-5 py-3 text-center">
               <a
                 href="https://www.google.com/maps/dir/?api=1&destination=18+Rue+de+la+Fontaine+au+Roi+75011+Paris"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-block rounded-xl bg-white px-6 py-2.5 text-[12px] font-bold text-slate-900 shadow hover:bg-white/90"
+                className="inline-block rounded-xl bg-white px-6 py-2 text-[12px] font-bold text-slate-900 shadow hover:bg-white/90"
                 onClick={(e) => e.stopPropagation()}
               >
                 📍 Calculer mon itinéraire
